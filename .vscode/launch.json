@@ -17,6 +17,20 @@
         "synth",
       ],
       "cwd": "${workspaceFolder}/commonjs",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "-r", 
+        "./node_modules/ts-node/register",
+      ],
+      "name": "cdk esm",
+      "program": "${workspaceFolder}/esm/node_modules/aws-cdk/bin/cdk.ts",
+      "args": [
+        "synth",
+      ],
+      "cwd": "${workspaceFolder}/esm",
     }
   ]
 }
