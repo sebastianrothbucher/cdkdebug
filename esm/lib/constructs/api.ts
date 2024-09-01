@@ -1,6 +1,12 @@
 import {Construct} from "constructs";
-import {AuthorizationType, Definition, GraphqlApi} from "aws-cdk-lib/aws-appsync";
-import {Duration, Expiration} from "aws-cdk-lib";
+import {
+    AuthorizationType,
+    BaseDataSource, Code,
+    Definition,
+    FunctionRuntime,
+    GraphqlApi,
+    NoneDataSource
+} from "aws-cdk-lib/aws-appsync";
 
 export interface ApiProps {
     // (nth so far)
@@ -20,5 +26,23 @@ export class ApiConstruct extends Construct {
                 },
             },
         });
+        const ds = new NoneDataSource(this, "NoneDs", {
+            api,
+        });
+        const createAppSyncResolver = (ds: BaseDataSource, typeName: 'Query' | 'Mutation', fieldName: string) => {
+            ds.createResolver(typeName + '-' + fieldName + '-res', {
+                typeName,
+                fieldName,
+                runtime: FunctionRuntime.JS_1_0_0,
+                code: Code.fromInline(`
+        export function request(ctx) {
+          return {};
+        }
+        export function response(ctx) {
+          return 42;
+        }`),
+            });
+        };
+        createAppSyncResolver(ds, 'Query', 'test');
     }
 }
