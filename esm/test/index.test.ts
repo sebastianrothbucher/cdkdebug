@@ -1,7 +1,8 @@
 import { App } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
+import { expect, test } from 'vitest'
 
-import { CommonjsStack } from '../lib';
+import { CommonjsStack } from '../lib/index.js';
 
 expect.addSnapshotSerializer({
     test: (val) => typeof val === 'string',

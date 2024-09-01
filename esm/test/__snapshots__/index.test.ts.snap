@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Test mvp stack (dev) 1`] = `
 {
@@ -10,6 +10,19 @@ exports[`Test mvp stack (dev) 1`] = `
     },
   },
   "Resources": {
+    "apiNoneDs2753AD49": {
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "apiSomeAPI4D59EA3E",
+            "ApiId",
+          ],
+        },
+        "Name": "NoneDs",
+        "Type": "NONE",
+      },
+      "Type": "AWS::AppSync::DataSource",
+    },
     "apiSomeAPI4D59EA3E": {
       "Properties": {
         "AuthenticationType": "API_KEY",
@@ -30,6 +43,36 @@ exports[`Test mvp stack (dev) 1`] = `
         },
       },
       "Type": "AWS::AppSync::ApiKey",
+    },
+    "apiSomeAPIQuerytestres5A053FC2": {
+      "DependsOn": [
+        "apiNoneDs2753AD49",
+        "apiSomeAPISchemaF217F45F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "apiSomeAPI4D59EA3E",
+            "ApiId",
+          ],
+        },
+        "Code": "
+        export function request(ctx) {
+          return {};
+        }
+        export function response(ctx) {
+          return 42;
+        }",
+        "DataSourceName": "NoneDs",
+        "FieldName": "test",
+        "Kind": "UNIT",
+        "Runtime": {
+          "Name": "APPSYNC_JS",
+          "RuntimeVersion": "[VERSION REMOVED]",
+        },
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
     },
     "apiSomeAPISchemaF217F45F": {
       "Properties": {
