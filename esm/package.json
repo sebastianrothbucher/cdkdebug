@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "postinstall": "../prep-debug.sh",
     "test": "vitest run",
     "cdk": "cdk"
   },
