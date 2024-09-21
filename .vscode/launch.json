@@ -11,6 +11,20 @@
         "-r", 
         "./node_modules/ts-node/register",
       ],
+      "name": "cdk as-is",
+      "program": "${workspaceFolder}/asis/node_modules/aws-cdk/bin/cdk.js",
+      "args": [
+        "synth",
+      ],
+      "cwd": "${workspaceFolder}/asis",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "-r", 
+        "./node_modules/ts-node/register",
+      ],
       "name": "cdk commonjs",
       "program": "${workspaceFolder}/commonjs/node_modules/aws-cdk/bin/cdk.ts",
       "args": [
