@@ -20,7 +20,8 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
+    "resolveJsonModule": true,
     "typeRoots": [
       "./node_modules/@types"
     ]
